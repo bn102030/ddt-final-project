@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--begin::Col-->
+
+<div class="card col-xl-12 mb-5 mb-xl-10">
+    <!--begin::Table Widget 4-->
+    <div class="card card-flush h-xl-100">
+        <!--begin::Card header-->
+        <div class="card-header pt-7">
+            <!--begin::Title-->
+            <h3 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bolder text-dark">消費明細</span>
+                <span class="card-label text-gray-400 mt-1 fw-bold fs-6" th:text="${dateFormat.yearAndMonth}"></span>
+            </h3>
+            <!--end::Title-->
+
+        </div>
+        <!--end::Card header-->
+        <!--begin::Card body-->
+        <div class="card-body">
+            <!--begin::Table-->
+            <table class="table align-middle table-row-dashed fs-6 gy-3">
+                <!--begin::Table head-->
+                <thead>
+                <!--begin::Table row-->
+                <tr class="text-start text-gray-800 fw-bolder fs-5 text-uppercase gs-0">
+                    <th class="text-end min-w-125px">消費類別</th>
+                    <th class="text-end min-w-100px">總金額</th>
+                    <th class="text-end min-w-100px">比例</th>
+                    <th class="text-end min-w-150px">消費商品</th>
+                    <th class="text-end min-w-175px">商品金額</th>
+                    <th class="text-end min-w-175px">購買數量</th>
+                    <th class="text-end min-w-125px">消費商家</th>
+                    <th class="text-end min-w-100px">消費日期</th>
+                    <th class="text-end"></th>
+
+                </tr>
+                <!--end::Table row-->
+                </thead>
+                <!--end::Table head-->
+
+                <!--begin::Table body-->
+                <tbody class="fw-bolder text-gray-600">
+                <!--分類list-->
+                <th:block th:each="cList : ${categoryList}">
+                    <tr class="bg-secondary text-gray-800">
+
+                        <td th:text="${cList.categoryName}"></td>
+                        <td th:text="${cList.price}"></td>
+                        <td th:text="${cList.percentage}"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <th:block th:each="dtoItems : ${cList.orderList}">
+                        <!--每個分類消費商品list-->
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td th:text="${dtoItems.itemName}"></td>
+                            <td class="text-end " th:text="${'$'+dtoItems.price}"></td>
+                            <td class="text-end " th:text="${dtoItems.amount}"></td>
+                            <td class="text-end " th:text="${dtoItems.shopName}"></td>
+                            <td class="text-end " th:text="${dtoItems.orderDate}"></td>
+
+                        </tr>
+                    </th:block>
+
+                </th:block>
+
+                </tbody>
+                <!--end::Table body-->
+            </table>
+            <!--end::Table-->
+        </div>
+        <!--end::Card body-->
+    </div>
+    <!--end::Table Widget 4-->
+</div>
+
+</script>
+
+<!--end::Col-->
+</body>
+</html>
